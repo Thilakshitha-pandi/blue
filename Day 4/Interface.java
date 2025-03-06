@@ -1,21 +1,30 @@
 interface Playable {
-  void play();
+    void play();
 }
-class Guitar implements Playable {
-  public void play() {
-    System.out.println("Playing Guitar");
-  }
+
+abstract class Guitar implements Playable {
+    public void play() {
+        System.out.println("Playing Guitar");
+    }
 }
-class Piano implements Playable {
-  public void play() {
-    System.out.println("Playing Piano");
-  }
-} 
+
+abstract class Piano implements Playable {
+    public void play() {
+        System.out.println("Playing Piano");
+    }
+}
+
+class GuitarEx extends Guitar {
+}
+
+class PianoEx extends Piano {
+}
+
 public class Interface {
-  public static void main (String[] args){
-    Playable obj1 = new Guitar();
-    Playable obj2 = new Piano();
-    obj1.play();
-    obj2.play();
-  }
+    public static void main(String[] args) {
+        Playable obj1 = new GuitarEx();
+        Playable obj2 = new PianoEx();
+        obj1.play();
+        obj2.play();
+    }
 }
