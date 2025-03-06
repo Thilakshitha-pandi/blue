@@ -12,8 +12,8 @@ class Company {
     }
 
     public static void main(String[] args) {
-        Company emp1 = new Company("John");
-        Company emp2 = new Company("Alice");
+        Company emp1 = new Company("Harry potter");
+        Company emp2 = new Company("Ginny Weasley");
 
         emp1.displayDetails();
         emp2.displayDetails();
