@@ -57,7 +57,11 @@
           result = num1 * num2;
           break;
         case "Division":
-          result = num2 !== 0 ? (num1 / num2) : " Error: Division by zero";
+          if (num2 !== 0) {
+            result = num1 / num2;
+          } else {
+            result = "Error: Division by zero";
+          }
           break;
         default:
           result = "Unknown operation";
