@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Registration Form</h2>
+    <form action="Registration Form" onsubmit="return validateForm()">
+       <!-- Name -->
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name">
+        <div class="error" id="nameError"></div>
+        <br><br>
+
+       <!-- E-mail -->
+        <label for="Email">Email</label>
+        <input type="email" name="Email" id="Email">
+        <div class="error" id="EmailError"></div>
+        <br><br>
+
+        <!-- Password -->
+        <label for="Password">Password</label>
+        <input type="Password" name="Password" id="Password">
+        <div class="error" id="PasswordError"></div>
+        <br><br>
+
+         <!-- Number -->
+        <label for="phone">Mobile Number</label>
+        <input type="text" name="phone" id="phone">
+        <div class="error" id="phoneError"></div>
+        <button type="submit">Submit</button>
+        <br><br>
+
+    </form>
+
+    <!-- Consolidated JavaScript Validation -->
+    <script>
+        function validateForm() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("Email").value;
+            const password = document.getElementById("Password").value;
+            const phone = document.getElementById("phone").value;
+
+            // Validation functions inside a single script
+            const validateName = (name) => {
+                const regex = /^[A-Za-z\s]+$/;
+                if(name.trim() === "") return "Name cannot be empty";
+                if(!regex.test(name)) return "Name can only contain letters and spaces";
+                return "Name is valid";
+            };
+
+            const validateEmail = (email) => {
+                const regex = /^[A-Za-z0-9._%+~]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+                if(email.trim() === "") return "E-mail cannot be empty";
+                if(!regex.test(email)) return "Invalid E-mail format";
+                return "E-mail is valid";
+            };
+
+            const validatePassword = (password) => {
+                const regex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+                if(password.trim() === "") return "Password cannot be empty";
+                if(!regex.test(password)) return "Password must be at least 8 characters long, with uppercase letters and digits";
+                return "Password is valid";
+            };
+
+            const validateNum = (phone) => {
+                const regex = /^[0-9]{10}$/;
+                if(phone.trim() === "") return "Mobile number cannot be empty";
+                if(!regex.test(phone)) return "Mobile number must contain 10 digits";
+                return "Mobile number is valid";
+            };
+
+            
+            const nameError = validateName(name);
+            const emailError = validateEmail(email);
+            const passwordError = validatePassword(password);
+            const phoneError = validateNum(phone);
+
+            
+            document.getElementById("nameError").innerText = nameError !== "Name is valid" ? nameError : "";
+            document.getElementById("EmailError").innerText = emailError !== "E-mail is valid" ? emailError : "";
+            document.getElementById("PasswordError").innerText = passwordError !== "Password is valid" ? passwordError : "";
+            document.getElementById("phoneError").innerText = phoneError !== "Mobile number is valid" ? phoneError : "";
+
+            
+            if(nameError !== "Name is valid" || emailError !== "E-mail is valid" || passwordError !== "Password is valid" || phoneError !== "Mobile number is valid") {
+                return false;
+            }
+
+            
+            return true;
+        }
+    </script>
+</body>
+</html>
