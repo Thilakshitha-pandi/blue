@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character and Word Count</title>
+</head>
+<body>
+    <h2>Char Word</h2>
+    <textarea id="mainText" placeholder="Type text here"></textarea>
+    <div class="count">
+        Char Count: <span id="charcount">0</span><br><br>
+        Word Count: <span id="wordcount">0</span>
+    </div>
+    <script>
+        document.getElementById("mainText").addEventListener("input", function() {
+            const text = this.value; 
+            document.getElementById("charcount").innerText = text.length;
+            const trimmed = text.trim();
+            const wordCount = trimmed === "" ? 0 : trimmed.split(/\s+/).length;
+            document.getElementById("wordcount").innerText = wordCount;
+        });
+    </script>
+</body>
+</html>
