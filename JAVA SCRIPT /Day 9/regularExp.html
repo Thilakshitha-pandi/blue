@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // Quantifiers :specify how many times a character or group should appear.
+    let text="hello everyone all have a good day"
+    let patten =/\l*/g;
+    let patten2=/\l+/g;
+    let patten3=/\l?/g;
+
+    let result = text.match(patten);
+    let result2 = text.match(patten);
+    let result3 = text.match(patten);
+
+    console.log(result);
+    console.log(result2);
+    console.log(result3);
+
+    let sentence ="hai hello/n hai mom /n hai everyone /n hello everyone/n hai "
+    let patten4 = /\hai+/igm;
+    let result4 = sentence.match(patten4);
+    console.log(result4);
+    //modifiers(flags) change how regex match
+    //i - case insensitive , g- global matchs(all occur),m - multiline
+
+    //meta characters have special meaning in regex 
+
+    // .any char expect newline
+    // \d - digit (0-9)
+    // \w - word characters (letters,digits)
+    // \s - whitespace
+    // ^ - starting of the string line
+    // $ - ending of the string line 
+    let digitchar = "Js001"
+    let patten5=/\d+\w/g;
+    let result5 = digitchar.match(patten5);
+    console.log(result5);
+    // Grouping 
+    // Parentheses() - are used to group patten & capture submatches 
+
+    let username =" thilakshitha pandi "
+    let patten6 = /(\w+)/g;
+    let result6 = username.match(patten6);
+    console.log(result6);
+    console.log(result6[0]);
+    console.log(result6[1]);
+
+    //common regex method
+    //test() - returns true or false 
+    // 
