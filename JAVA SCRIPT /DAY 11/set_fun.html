@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //a set is collection of uniqe elementes
+        //it automattically removes duplicates
+        //syntax - let my set
+        let email= new Set([])
+        email.add("thilakshith0903@gmail.com");
+        email.add("thilakshitha2007@gmail.com");
+        email.add("thilakshitha7337@gmail.com");
+        email.add("akshaya24@gmail.com");
+        console.log(email);
+        email.delete("thilakshitha2007@gmail.com");
+        console.log(email);
+        for(let mailId of email){
+            console.log(mailId);
+        }
+        email.forEach(x=>{
+            console.log(email);
+        })
+        let admin=new Set(["read","write","delect"]);
+        let user=new Set(["read"]);
+        function haspermission(Role,Permission){
+            return Role.has(Permission)
+        }
+        console.log(haspermission(admin,"delect"));
+        console.log(haspermission(user,"delect"));
+        
+        //union ,intersection diff using set
+        let setA= new Set([1,2,3,4,5,6,7]);
+        let setB= new Set([2,8,7,9,1,5,8]);
+        let union= new Set([...setA,...setB]);
+        console.log(union);
+
+        let intersection= new Set([...setA].filter(x=>setB.has(x)));
+        console.log(intersection);
+
+        let differ=new Set([...setA].filter(x=>setB.has(x)));
+        console.log(differ);
+
+        let user1= {name:"Thilakshitha"};
+        let user2= {name:"Akshaya"};
+        let map = new Map();
+        map.set(user1,"hi");
+        map.set(user2,"hello");
+        console.log(map);
+        for (let message of map){
+            console.log(message);
+        }
+    </script>
+</body>
+</html
