@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= , initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //local storage->stores data permanently
+        //(until cleared by user or code)
+        //values will be in strings only ("") so dictinoary method
+        localStorage.getItem("username","javascript");
+        localStorage.getItem("username");
+        localStorage.removeItem("username");
+        localStorage.clear()
+        //storing array value in localstorage
+        //local storage only stores string ,not arrays
+        //we need to convert arrays into a string(using JSON.stringify)
+       var a=["hachu",19,"bsc ct"];
+       var b=["swetha",18,"bsc ct"];
+       //json class
+       //stringify converting to string(method)
+       localStorage.setItem("details",JSON.stringify(a))
+       localStorage.setItem("details",JSON.stringify(b))
+       // parse()to get the stringfy elements
+       let stredarr=JSON.parse(localStorage.getItem("details"))
+       console.log(stredarr)
+       //storing an array of objects in local storage
+       let subject=[{
+        "sub1":"sociaL",
+        "sub2":"science"
+       }]
+       localStorage.setItem("subjectname",JSON.stringify(subject));
+       let stredobj=JSON.parse (localstorge.getItem("subjectname"))
+       //session storage
+       //useful for temporary data
+       //(like login session,form progress)
+       sessionStorage.setItem("fruits","apples");
+       sessionStorage.getItem("fruits");
+//for session storage change ls to ss
+
+
+    </script>
+</body>
+</html>
