@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        try {
+    let atmpin = 7337;
+    if (atmpin != 7337) {
+        throw "invalid pin";
+    }
+    console.log("logged in");
+    } catch (error) {
+        console.log("error " + error);
+    } 
+    finally {
+    console.log("executed successfully");
+    }
+    let str = '{"name":"akshaya"}';  // JSON string
+    console.log(str);
+
+    let strstred = JSON.parse(str);  // parse string to object
+    console.log(strstred);
+
+    let obj = {id: "1"};
+    let streobj = JSON.stringify(obj); // object to string
+    console.log(streobj);
+    console.log("🏎️🍦🌸🧐💧😄🔥🪑😊🌳🎉🍊🏙️⏰🛏️✏️💥😎🎨🚗");
+    
+    </script>
+</body>
+</html>
