@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Product Catalog Viewer</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .product { border: 1px solid #ccc; padding: 15px; margin-bottom: 10px; border-radius: 5px; }
+    .product h2 { margin: 0 0 10px; }
+    .error { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h1>Product Catalog</h1>
+  <div id="product-list"></div>
+  <div id="error-message" class="error"></div>
+
+  <!-- Embedded JSON to simulate external file -->
+  <script id="products-json" type="application/json">
+  [
+    {
+      "name": "Wireless Headphones",
+      "price": 99.99,
+      "description": "High quality wireless headphones with noise cancellation."
+    },
+    {
+      "name": "Smartwatch",
+      "price": 149.99,
+      "description": "Water-resistant smartwatch with multiple fitness tracking features."
+    },
+    {
+      "name": "Portable Charger",
+      "price": 25.99,
+      "description": "Compact 10,000mAh power bank for charging on the go."
+    }
+  ]
+  </script>
+
+  <script>
+    async function loadProducts() {
+      const productListEl = document.getElementById('product-list');
+      const errorMessageEl = document.getElementById('error-message');
+
+      try {
+        // Simulate fetch by reading embedded JSON text
+        const jsonText = document.getElementById('products-json').textContent;
+        if (!jsonText) throw new Error('No JSON data found');
+
+        // Parse JSON
+        const products = JSON.parse(jsonText);
+
+        // Clear any previous content or error
+        productListEl.innerHTML = '';
+        errorMessageEl.textContent = '';
+
+        products.forEach(product => {
+          const productEl = document.createElement('div');
+          productEl.className = 'product';
+
+          productEl.innerHTML = `
+            <h2>${product.name}</h2>
+            <p><strong>Price:</strong> $${product.price.toFixed(2)}</p>
+            <p>${product.description}</p>
+          `;
+
+          productListEl.appendChild(productEl);
+        });
+      } catch (error) {
+        errorMessageEl.textContent = `Failed to load products: ${error.message}`;
+        productListEl.innerHTML = '';
+        console.error(error);
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', loadProducts);
+  </script>
+
+</body>
+</html>
