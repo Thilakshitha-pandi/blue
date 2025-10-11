@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API</title>
+</head>
+<style>
+    .list{
+        background-color: aqua;
+
+    }
+</style>
+<body>
+
+    <h2>Product List</h2>
+  <button onclick="loaddata()">Load Products</button>
+  <div id="output"></div>
+
+    <script>
+     function loaddata() {
+      fetch('https://fakestoreapi.com/products')
+        .then((response) => response.json())
+        .then((data) => {
+          const list = data
+            .map(
+              (product) =>
+                `<div class="product">
+                    <img src="${product.image}" alt="${product.title}">
+                    <h3>${product.title}</h3>
+                    <p><strong>Price:</strong> $${product.price}</p>
+                    <p>${product.description}</p>
+                </div>`
+            )
+            .join("");
+          document.getElementById("output").innerHTML = list;
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+          document.getElementById("output").innerHTML = "Failed to load products.";
+        });
+    }
+    </script>
+</body>
+</html>
