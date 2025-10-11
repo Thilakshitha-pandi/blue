@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Crypto Price Ticker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+    h2 {
+      color: #333;
+    }
+    #price {
+      font-size: 24px;
+      margin: 20px 0;
+    }
+    #status {
+      font-weight: bold;
+      color: blue;
+    }
+    .error {
+      color: red;
+    }
+    button {
+      margin-right: 10px;
+      padding: 10px 15px;
+    }
+  </style>
+</head>
+<body>
+  <h2>💰 Live Bitcoin Price Ticker (USD)</h2>
+  <div id="price">Price: $0.00</div>
+  <p id="status" aria-live="polite"></p>
+  <button onclick="startTicker()">Start</button>
+  <button onclick="stopTicker()">Stop</button>
+
+  <script>
+    let intervalId = null;
+    let timeoutId = null;
+
+    function fetchCryptoPrice() {
+      const status = document.getElementById('status');
+      const priceDisplay = document.getElementById('price');
+
+      status.classList.remove('error');
+      status.textContent = '';
+
+      timeoutId = setTimeout(() => {
+        status.textContent = 'Loading... (taking longer than usual)';
+      }, 5000);
+
+      fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          clearTimeout(timeoutId);
+          const usdPrice = data.bitcoin.usd;
+          priceDisplay.textContent = `Price: $${usdPrice}`;
+        })
+        .catch(error => {
+          clearTimeout(timeoutId);
+          status.textContent = 'Failed to fetch price.';
+          status.classList.add('error');
+          console.error('Error:', error);
+        });
+    }
+
+    function startTicker() {
+      if (!intervalId) {
+        fetchCryptoPrice();
+        intervalId = setInterval(fetchCryptoPrice, 10000);
+        document.getElementById('status').textContent = 'Live updates started.';
+      }
+    }
+
+    function stopTicker() {
+      clearInterval(intervalId);
+      intervalId = null;
+      document.getElementById('status').textContent = 'Live updates stopped.';
+    }
+  </script>
+</body>
+</html>
